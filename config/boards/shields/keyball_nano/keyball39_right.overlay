@@ -54,24 +54,14 @@
         reg = <0>;
         spi-max-frequency = <2000000>;
         irq-gpios = <&gpio1 11 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+        scroll-layers = <7>;
+        snipe-layers = <8>;
     };
 };
-
-#include <input/processors.dtsi>
-#include <dt-bindings/zmk/input_transform.h>
 
 / {
   trackball_listener {
     compatible = "zmk,input-listener";
     device = <&trackball>;
-    
-    input-processors = <&zip_xy_scaler 1 1>;
-    
-    scroll_mode {
-      layers = <7>;
-      input-processors = <&zip_xy_to_scroll_mapper 
-                          &zip_scroll_transform INPUT_TRANSFORM_Y_INVERT
-                          &zip_scroll_scaler 1 30>;
-    };
   };
 };

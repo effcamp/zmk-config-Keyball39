@@ -6,6 +6,7 @@
 #define LAYER_FUNC 5
 #define LAYER_POINTER 6
 #define LAYER_SCROLL 7
+#define LAYER_SNIPE 8
 
 #include <behaviors/mouse_keys.dtsi>
 #include <dt-bindings/zmk/mouse.h>
@@ -38,7 +39,7 @@
 &kp Q            &kp W       &kp E        &kp R              &kp T                                          &kp Y              &kp U            &kp I               &kp O             &kp P
 &mt LALT A       &kp S       &kp D        &kp F              &kp G                                          &kp H              &kp J            &kp K               &kp L             &kp SQT
 &mt LCTRL Z      &kp X       &kp C        &kp V              &kp B                                          &kp N              &mt LCTRL M      &mt LSFT COMMA      &mt LALT DOT      &kp SLASH
-&kp LCTRL        &mo 6       &mo 7        &mt LGUI ESC       &kp LSFT       &lt 1 TAB         &lt 5 BSPC   &lt 1 SPACE        &none            &none           &mo 6
+&kp LCTRL        &mo 6       &mo 7        &mt LGUI ESC       &kp LSFT       &lt 1 TAB         &lt 5 BSPC    &lt 1 SPACE        &mo 6            &none           &none
             >;
         };
 
@@ -96,14 +97,24 @@
             label = "POINTER";
             bindings = <
 &tog 2           &none       &trans       &none              &none                                          &bt BT_SEL 0       &bt BT_SEL 1     &bt BT_SEL 2        &bt BT_SEL 3      &bt BT_SEL 4
-&tog 3           &none       &none        &none              &none                                          &bt BT_CLR         &out OUT_BLE     &out OUT_USB        &out OUT_TOG      &none
+&tog 3           &none       &none        &none              &none                                          &none              &out OUT_TOG     &kp LCTRL           &none             &bt BT_CLR
 &none            &kp LGUI    &kp LALT     &kp LSFT           &none                                          &mkp MB3           &mkp LCLK        &mkp RCLK           &mo 7             &none
-&kp LCTRL        &trans      &trans       &mkp RCLK          &mkp LCLK      &mkp MB3          &kp LCTRL     &kp LSFT           &none            &none               &trans
+&kp LCTRL        &trans      &trans       &mkp RCLK          &mkp LCLK      &mkp MB3          &kp LCTRL     &kp LSFT           &mo 8            &none               &trans
             >;
         };
 
         scroll_layer {
             label = "SCROLL";
+            bindings = <
+&trans           &trans      &trans       &trans             &trans                                         &trans             &trans           &trans              &trans            &trans
+&trans           &trans      &trans       &trans             &trans                                         &trans             &trans           &trans              &trans            &trans
+&trans           &trans      &trans       &trans             &trans                                         &trans             &trans           &trans              &trans            &trans
+&trans           &trans      &trans       &trans             &trans         &trans            &trans        &trans             &trans           &trans              &trans
+            >;
+        };
+
+        snipe_layer {
+            label = "SNIPE";
             bindings = <
 &trans           &trans      &trans       &trans             &trans                                         &trans             &trans           &trans              &trans            &trans
 &trans           &trans      &trans       &trans             &trans                                         &trans             &trans           &trans              &trans            &trans
