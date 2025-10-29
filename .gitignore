@@ -1,0 +1,16 @@
+secrets.dtsi
+config/secrets.dtsi
+build
+modules
+
+# West workspace files
+.west/
+zephyr/
+zmk/
+zmk-pmw3610-driver/
+
+# Build artifacts
+*.uf2
+
+# Temporary files
+tmp-via-copy/

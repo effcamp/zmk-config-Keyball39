@@ -1,5 +1,51 @@
 on: [push, pull_request, workflow_dispatch]
 
 jobs:
+  secrets:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      
+      - name: Create secrets.dtsi
+        env:
+          WORKPASS: ${{ secrets.WORKPASS }}
+          BWPASS: ${{ secrets.BWPASS }}
+          PERSPASS: ${{ secrets.PERSPASS }}
+        run: |
+          cat > config/secrets.dtsi << EOF
+          / {
+              macros {
+                  workpass: workpass {
+                      compatible = "zmk,behavior-macro";
+                      #binding-cells = <0>;
+                      bindings = <$WORKPASS>;
+                      label = "WORKPASS";
+                  };
+                  
+                  bwpass: bwpass {
+                      compatible = "zmk,behavior-macro";
+                      #binding-cells = <0>;
+                      bindings = <$BWPASS>;
+                      label = "BWPASS";
+                  };
+                  
+                  perspass: perspass {
+                      compatible = "zmk,behavior-macro";
+                      #binding-cells = <0>;
+                      bindings = <$PERSPASS>;
+                      label = "PERSPASS";
+                  };
+              };
+          };
+          EOF
+      
+      - name: Upload config
+        uses: actions/upload-artifact@v4
+        with:
+          name: config-with-secrets
+          path: config/
+
   build:
+    needs: secrets
     uses: zmkfirmware/zmk/.github/workflows/build-user-config.yml@main
