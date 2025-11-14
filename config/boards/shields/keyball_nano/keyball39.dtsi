@@ -74,8 +74,8 @@
         label = "KSCAN";
 
         diode-direction = "col2row";
-        debounce-press-ms = <3>;
-        debounce-release-ms = <5>;
+        debounce-press-ms = <1>;
+        debounce-release-ms = <7>;
 	row-gpios
 		= <&pro_micro 21 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
 		, <&pro_micro 20 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
